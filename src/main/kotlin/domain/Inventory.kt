@@ -1,12 +1,12 @@
-package `object`
+package domain
 
 //TODO: generate some test in the sheets if Double works fine. Maybe just have the presentation as an Int? accurate for returnDouble == returnDouble == 0 return
-data class Inventory(val inventoryName: String, var resourceList: MutableMap<Resource, Double>, var silver: Int) {
-    fun getResourceCount(resource: Resource): Double {
-        return resourceList[resourceList.keys.find { obj -> resource == obj }]?:0.0
+data class Inventory(val inventoryName: String, var resourceList: MutableMap<Resource, Int>, var silver: Int) {
+    fun getResourceCount(resource: Resource): Int {
+        return resourceList[resourceList.keys.find { obj -> resource == obj }]?:0
     }
 
-    fun subResource(resource: Resource, num: Double) {
+    fun subResource(resource: Resource, num: Int) {
         val key = resourceList.keys.find { obj -> obj == resource }
         if (key != null) {
             resourceList[key] = resourceList[key]!!.minus(num)
@@ -14,7 +14,7 @@ data class Inventory(val inventoryName: String, var resourceList: MutableMap<Res
 
     }
 
-    fun addResource(resource: Resource, num: Double) {
+    fun addResource(resource: Resource, num: Int) {
         val key = resourceList.keys.find { obj -> obj == resource }
         if (key != null) {
             resourceList[key] = resourceList[key]!! + num
@@ -23,7 +23,7 @@ data class Inventory(val inventoryName: String, var resourceList: MutableMap<Res
         }
     }
 
-    fun setResource(resource: Resource, num: Double) {
+    fun setResource(resource: Resource, num: Int) {
         resourceList.replace(resource, num)
     }
 
